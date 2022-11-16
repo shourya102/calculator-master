@@ -84,6 +84,8 @@ public class Controller implements Initializable{
 
     public void operatorProcess(ActionEvent event)
     {
+        if(result.getText().equals(""))
+            return;
         Button button = (Button) event.getSource();
         String value = button.getText();
         operator = value;
@@ -119,6 +121,8 @@ public class Controller implements Initializable{
     }
 
     public void operatorEquals(ActionEvent event){
+        if(result.getText().equals(""))
+            return;
         Button button = (Button) event.getSource();
         String value = button.getText();
         operator = value;
