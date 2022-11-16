@@ -1,0 +1,63 @@
+
+
+.main{
+    -fx-background-color: transparent;
+}
+
+.card{
+    -fx-background-color: linear-gradient(to bottom right, #2c3e50, #bdc3c7);
+    -fx-background-radius: 15px;
+}
+
+.screen{
+    -fx-background-color: transparent;
+    -fx-background-radius: 15px;
+}
+
+.result{
+    -fx-background-color: linear-gradient(to bottom right, #283048, #859398);
+    -fx-text-fill: #fff;
+    -fx-font-size: 30px;
+    -fx-padding: 15px 25px 5px 15px;
+}
+
+.prevnumber{
+    -fx-text-fill: #fff;
+    -fx-font-size: 20px;
+    -fx-padding: 20px 15px 5px 15px;
+}
+
+.keypad{
+    -fx-background-color: rgba(67, 67, 67, 0.10);
+    -fx-background-radius: 0px;
+    -fx-text-fill: #fff;
+    -fx-font-size: 30px;
+    -fx-cursor: hand;
+}
+
+.keypad:hover{
+    -fx-background-color: rgba(78, 78, 78, 0.30);
+}
+
+.opkeys{
+    -fx-background-color: rgba(67, 67, 67, 0.5);
+    -fx-background-radius: 0px;
+    -fx-text-fill: #fff;
+    -fx-font-size: 30px;
+    -fx-cursor: hand;
+}
+
+.opkeys:hover{
+    -fx-background-color: rgba(78, 78, 78, 0.30);
+}
+
+.exit{
+    -fx-background-color: rgba(67, 67, 67, 0.5);
+    -fx-text-fill: #fff;
+    -fx-font-size: 15px;
+    -fx-cursor: hand;
+}
+
+.exit:hover{
+    -fx-background-color: rgba(255, 0, 0, 0.30);
+}
