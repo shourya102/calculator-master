@@ -57,8 +57,8 @@
                         <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#computeProcess" styleClass="keypad" stylesheets="@style.css" text="8" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#computeProcess" styleClass="keypad" stylesheets="@style.css" text="7" GridPane.rowIndex="4" />
                         <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#computeProcess" styleClass="keypad" stylesheets="@style.css" text="1" GridPane.rowIndex="2" />
-                        <Button layoutX="210.0" layoutY="373.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="opkeys" stylesheets="@style.css" text="\%" />
-                        <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#operatorProcess" styleClass="opkeys" stylesheets="@style.css" text="=" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <Button layoutX="210.0" layoutY="373.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#operatorProcess" styleClass="opkeys" stylesheets="@style.css" text="\%" />
+                        <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#operatorEquals" styleClass="opkeys" stylesheets="@style.css" text="=" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
                </children>

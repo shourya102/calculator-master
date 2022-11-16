@@ -3,23 +3,22 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class Controller implements Initializable{
-    
-    @FXML
-    private Label result;
-    @FXML
-    private Label prevnumber;
+
+    public Label result;
+    public Label prevnumber;
     private boolean check = true;
     private String operator = "";
-    double total = 0.0;
-    double num1 = 0.0;
-    double num2 = 0.0;
+    private String prevOperator = "";
+    private boolean num1Entered = false;
+    private double total = 0.0;
+    private double num1 = 0.0;
+    private double num2 = 0.0;
     public void number(String number)
     {
         result.setText(result.getText() + number);
@@ -39,10 +38,7 @@ public class Controller implements Initializable{
         switch (operator)
         {
             case "+":
-                if(num1-(int)num1 > 0 || num2-(int)num2 > 0)
-                    return num1+num2;
-                else
-                    return (int)(num1+num2);
+                return num1+num2;
             case "-":
                 return num1-num2;
             case "×":
@@ -68,29 +64,85 @@ public class Controller implements Initializable{
             check = false;
         }
         String value = button.getText();
-        number(value);
-        prevNumber(value);
+        if(prevOperator.equals("="))
+        {
+            prevnumber.setText("");
+            num1 = 0;
+            num2 = 0;
+            total = 0;
+            num1Entered = false;
+            operator = "";
+            prevOperator = "";
+            number(value);
+            prevNumber(value);
+        }
+        else{
+            number(value);
+            prevNumber(value);
+        }
     }
 
     public void operatorProcess(ActionEvent event)
     {
         Button button = (Button) event.getSource();
         String value = button.getText();
-        if(!value.equals("=")) {
-            if(!operator.isEmpty())
-                return;
-            operator = value;
+        operator = value;
+        if(prevOperator.equals("=")){
+            prevOperator = operator;
             prevOperator(operator);
-            num1 = Double.parseDouble(result.getText());
+            return;
+        }
+        if(!num1Entered) {
+            num1 = Integer.parseInt(result.getText());
+            prevOperator(operator);
+            prevOperator = operator;
             result.setText("");
+            num1Entered = true;
+            return;
         }
-        else{
-            if(operator.isEmpty())
-                return;
-            double num2 = Double.parseDouble(result.getText());
-            total = computeResult(num1, num2, operator);
-            result.setText(String.valueOf(total));
+        else {
+            if(result.getText().equals(""))
+            {
+                num2 = Integer.parseInt(result.getText());
+            }
         }
+        total = computeResult(num1, num2, prevOperator);
+        num1 = total;
+        num2 = 0;
+        int remfloat = (int)total;
+        if(total-remfloat==0)
+            prevnumber.setText(remfloat + " " + operator + " ");
+        else
+            prevnumber.setText(total + " " + operator + " ");
+        result.setText("");
+        prevOperator = operator;
+    }
+
+    public void operatorEquals(ActionEvent event){
+        Button button = (Button) event.getSource();
+        String value = button.getText();
+        operator = value;
+        if(prevOperator.isEmpty())
+            return;
+        num2 = Integer.parseInt(result.getText());
+        total = computeResult(num1, num2, prevOperator);
+        num1 = total;
+        num2 = 0;
+        int remfloat = (int)total;
+        if(total-remfloat==0)
+            prevnumber.setText(String.valueOf(remfloat));
+        else
+            prevnumber.setText(String.valueOf(total));
+        result.setText("");
+        prevOperator = operator;
+    }
+
+    public void computeUnary(){
+
+    }
+
+    public void operatorUnary(){
+
     }
 
     public void exit(ActionEvent event)
@@ -108,6 +160,10 @@ public class Controller implements Initializable{
             result.setText("");
             prevnumber.setText("");
         }
+        num1 = 0;
+        num2 = 0;
+        num1Entered = false;
+        operator = "";
     }
 
     public void backSpace(ActionEvent event)
@@ -117,8 +173,6 @@ public class Controller implements Initializable{
         {
             result.setText(result.getText().substring(0, length-1));
         }
-        else if(operator.equals("="))
-            prevnumber.setText("");
     }
 
     @Override
