@@ -84,11 +84,10 @@ public class Controller implements Initializable{
 
     public void operatorProcess(ActionEvent event)
     {
-        if(result.getText().equals(""))
-            return;
+        if(!prevOperator.equals("=") && result.getText().equals(""))
+          return;
         Button button = (Button) event.getSource();
-        String value = button.getText();
-        operator = value;
+        operator = button.getText();
         if(prevOperator.equals("=")){
             prevOperator = operator;
             prevOperator(operator);
@@ -103,10 +102,7 @@ public class Controller implements Initializable{
             return;
         }
         else {
-            if(result.getText().equals(""))
-            {
-                num2 = Integer.parseInt(result.getText());
-            }
+            num2 = Integer.parseInt(result.getText());
         }
         total = computeResult(num1, num2, prevOperator);
         num1 = total;
@@ -124,8 +120,7 @@ public class Controller implements Initializable{
         if(result.getText().equals(""))
             return;
         Button button = (Button) event.getSource();
-        String value = button.getText();
-        operator = value;
+        operator = button.getText();
         if(prevOperator.isEmpty())
             return;
         num2 = Integer.parseInt(result.getText());
