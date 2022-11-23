@@ -136,12 +136,37 @@ public class Controller implements Initializable{
         prevOperator = operator;
     }
 
-    public void computeUnary(){
-
+    public double computeUnary(String operator){
+        switch(operator){
+            case "x²":
+                return num1*num1;
+            case "1/x":
+                return 1/num1;
+            case "√x":
+                return Math.sqrt(num1);
+            default:
+                return 0;
+        }
     }
 
-    public void operatorUnary(){
-
+    public void operatorUnary(ActionEvent event){
+        Button button = (Button)event.getSource();
+        operator = button.getText();
+        String text =result.getText();
+        if(text.equals(""))
+            return;
+        if(!num1Entered) {
+            num1 = Integer.parseInt(text);
+            num1Entered = true;
+            total = computeUnary(operator);
+            prevnumber.setText(String.valueOf(total));
+            num1 = total;
+        }
+        else{
+            total = computeUnary(operator);
+            prevnumber.setText(String.valueOf(total));
+            num1 = total;
+        }
     }
 
     public void exit(ActionEvent event)
@@ -168,10 +193,27 @@ public class Controller implements Initializable{
     public void backSpace(ActionEvent event)
     {
         int length = result.getText().length();
-        if(length>0 && !operator.equals("="))
-        {
-            result.setText(result.getText().substring(0, length-1));
+        if(length == 0){
+            if(prevnumber.getText() != null){
+                prevnumber.setText("");
+                operator = "";
+                num1 = 0;
+                num2 = 0;
+                num1Entered = false;
+                return;
+            }
         }
+        else if(operator.equals("="))
+        {
+            result.setText("");
+            prevnumber.setText("");
+            operator = "";
+            num1 = 0;
+            num2 = 0;
+            num1Entered = false;
+        }
+        else
+            result.setText(result.getText().substring(0, length-1));
     }
 
     @Override
